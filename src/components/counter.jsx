@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import ButtonCart from "./buttonCart";
+import React from "react";
+import ButtonCart from "./ButtonCart";
 
-const Counter = ({ id, title, disabled, handleCartButton }) => {
-    const [value, setValue] = useState(0);
-
+const Counter = ({ id, title, disabled, value, handleCartButton, onIncrement, onDecrement }) => {
     const formatValue = () => {
         return value === 0 ? "empty" : value;
     };
@@ -18,13 +16,6 @@ const Counter = ({ id, title, disabled, handleCartButton }) => {
         return classes;
     };
 
-    const handleIncrement = () => {
-        setValue((prevState) => prevState + 1);
-    };
-    const handleDecrement = () => {
-        setValue((prevState) => prevState - 1);
-    };
-
     return (
         <div
             className='d-flex justify-content-between align-items-center my-1'
@@ -36,7 +27,7 @@ const Counter = ({ id, title, disabled, handleCartButton }) => {
                 <button
                     className='btn btn-primary btn-sm rounded-start'
                     style={{height: '38px', width: '38px', fontSize: '20px'}}
-                    onClick={handleIncrement}
+                    onClick={() => onIncrement(id)}
                 >
                     +
                 </button>
@@ -44,7 +35,7 @@ const Counter = ({ id, title, disabled, handleCartButton }) => {
                     className='btn btn-primary btn-sm rounded-end'
                     style={{height: '38px', width: '38px', fontSize: '20px'}}
                     disabled={formatDisabled()}
-                    onClick={handleDecrement}
+                    onClick={() => onDecrement(id)}
                 >
                     -
                 </button>
