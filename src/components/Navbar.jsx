@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({ sum }) => {
     return (
         <nav
             className='navbar px-5 w-50 m-auto text-secondary'
@@ -26,7 +26,7 @@ const Navbar = () => {
                         justifyContent: 'center'
                     }}
                 >
-                        <span className='fw-semibold'>0</span>
+                        <span className='fw-semibold'>{sum()}</span>
                     </span>
             </div>
         </nav>

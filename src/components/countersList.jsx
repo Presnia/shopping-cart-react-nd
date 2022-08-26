@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Counter from "./counter";
-import { Items } from "../data/items";
 import ButtonRefresh from "./ButtonRefresh";
 
-const CountersList = () => {
-    const initialState = Items;
-    const [counters, setCounters] = useState(initialState);
+const CountersList = ({ initialState, counters, setCounters }) => {
 
     const handleCartButton = (itemId) => {
         setCounters(counters.filter(item => item.id !== itemId));
