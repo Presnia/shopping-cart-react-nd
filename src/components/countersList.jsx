@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Counter from "./counter";
 import { Items } from "../data/items";
 
 const CountersList = () => {
+    const [row, setRow] = useState(Items);
+
+    const handleCartButton = (itemId) => {
+        setRow(row.filter(item => item.id !== itemId));
+    }
+
     return (
-        <div>
+        <div className='container w-50 mt-2'>
             {
-                Items.map(item =>
-                    <Counter key={item.id} {...item} />
+                row.map(item =>
+                    <Counter key={item.id} {...item} handleCartButton={handleCartButton} />
                 )
             }
         </div>

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-const Counter = () => {
+import ButtonCart from "./buttonCart";
+
+const Counter = ({ id, title, disabled, handleCartButton }) => {
     const [value, setValue] = useState(0);
 
     const formatValue = () => {
         return value === 0 ? "empty" : value;
     };
+
+    const formatDisabled = () => {
+        return value === 0 ? disabled = true : disabled = false;
+    }
+
     const getBadgeClasses = () => {
         let classes = "badge m-2 ";
         classes += value === 0 ? "bg-warning" : "bg-primary";
@@ -19,20 +26,30 @@ const Counter = () => {
     };
 
     return (
-        <div>
+        <div
+            className='d-flex justify-content-between align-items-center my-1'
+            style={{height: '40px'}}
+        >
+            <span className='w-75'>{title}</span>
             <span className={getBadgeClasses()}>{formatValue()}</span>
-            <button
-                className='btn btn-primary btn-sm m-1'
-                onClick={handleIncrement}
-            >
-                +
-            </button>
-            <button
-                className='btn btn-primary btn-sm m-1'
-                onClick={handleDecrement}
-            >
-                -
-            </button>
+            <div className='d-flex bg-primary rounded'>
+                <button
+                    className='btn btn-primary btn-sm rounded-start'
+                    style={{height: '38px', width: '38px', fontSize: '20px'}}
+                    onClick={handleIncrement}
+                >
+                    +
+                </button>
+                <button
+                    className='btn btn-primary btn-sm rounded-end'
+                    style={{height: '38px', width: '38px', fontSize: '20px'}}
+                    disabled={formatDisabled()}
+                    onClick={handleDecrement}
+                >
+                    -
+                </button>
+            </div>
+            <ButtonCart id={id} handleCartButton={handleCartButton} />
         </div>
     );
 };
